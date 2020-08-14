@@ -1,0 +1,46 @@
+wget https://k8s.io/examples/service/access/hello-application.yaml
+
+kubectl apply -f hello-application.yaml
+
+kubectl get deploy
+
+kubectl get pods
+
+kubectl describe deploy/hello-world
+
+kubectl scale deploy/hello-world --replicas=1
+
+watch kubectl get pods
+
+
+kubectl expose deploy/hello-world
+
+kg svc
+
+Now you can see the default service type which is ClusterIP, this is only accessible from inside the cluster. No external access.
+
+k delete svc/hello-world
+
+kubectl expose deployment hello-world --type=NodePort --name=hello-service
+
+
+kg svc
+
+gcloud compute instances list
+
+Now the below url should load:
+
+http://<public-node-ip>:<node-port>
+
+https://console.cloud.google.com/networking/firewalls/list?_ga=2.242810433.253118772.1597311240-45857940.1597140360
+
+
+kubectl expose deployment hello-world --type=LoadBalancer --name=hello-service
+
+kg svc
+
+
+Now go to Services & Ingress, there you can view the LoadBalancer and click on the link to proceed further.
+
+
+git clone https://github.com/jinojosep/example-voting-app.git
